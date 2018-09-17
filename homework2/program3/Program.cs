@@ -16,12 +16,12 @@ namespace program3
             {
                 array[i - 2] = i;
             }
-            for (int i = 2; i <= 100; i++)      //i表示被除数
+            for (int i = 2; i <= 100; i++)      //i表示除数
             {
                 int n = 0;
                 for (int j = 0; j < length; j++)
                 {
-                    if (array[j] % i != 0 || array[j] / i == 1)  //array[j]表示除数
+                    if (array[j] % i != 0 || array[j] / i == 1)  //array[j]表示被除数
                     {
                         array[n] = array[j];
                         n++;
