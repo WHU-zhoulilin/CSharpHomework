@@ -10,24 +10,37 @@ namespace program2
     {
         static void Main(string[] args)
         {
-            int length = 5;
-            Console.WriteLine("请输入" + length + "个整数：");
-            int[] array = new int[length];
-            for (int i = 0; i < length; i++)
+            int length=0;
+            Console.WriteLine("请输入整型数组的长度：");
+            try
             {
-                try
-                {
-                    array[i] = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                length = Convert.ToInt32(Console.ReadLine());
             }
-            Console.WriteLine("最大值：" + MaxInArray(array));
-            Console.WriteLine("最小值：" + MinInArray(array));
-            Console.WriteLine("平均值：" + AvgOfArray(array));
-            Console.WriteLine("总和：" + SumOfArray(array));
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            if (length != 0)
+            {
+                Console.WriteLine("请输入" + length + "个整数：");
+
+                int[] array = new int[length];
+                for (int i = 0; i < length; i++)
+                {
+                    try
+                    {
+                        array[i] = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+                Console.WriteLine("最大值：" + MaxInArray(array));
+                Console.WriteLine("最小值：" + MinInArray(array));
+                Console.WriteLine("平均值：" + AvgOfArray(array));
+                Console.WriteLine("总和：" + SumOfArray(array));
+            }
         }
         static int MaxInArray(int[] a)
         {

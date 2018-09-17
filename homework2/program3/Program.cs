@@ -12,16 +12,16 @@ namespace program3
         {
             int length = 99;
             int[] array = new int[99];
-            for (int i = 2; i <= 100; i++)
+            for (int i = 2; i <= 100; i++)      //初始化数组
             {
                 array[i - 2] = i;
             }
-            for (int i = 2; i <= 100; i++)
+            for (int i = 2; i <= 100; i++)      //i表示被除数
             {
                 int n = 0;
                 for (int j = 0; j < length; j++)
                 {
-                    if (array[j] % i != 0 || array[j] / i == 1)
+                    if (array[j] % i != 0 || array[j] / i == 1)  //array[j]表示除数
                     {
                         array[n] = array[j];
                         n++;

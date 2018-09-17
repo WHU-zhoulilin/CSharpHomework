@@ -11,26 +11,26 @@ namespace program1
         static void Main(string[] args)
         {
             Console.WriteLine("请输入一个整数：");
-            int a = 0;
             try
             {
+                int a = 0;
                 a = Convert.ToInt32(Console.ReadLine());
                 Console.Write(a + " = ");
+                for (int i = 2; i <= a / 2; i++)
+                {
+                    if (a % i == 0)
+                    {
+                        a = a / i;
+                        Console.Write(i + " x ");
+                        i = 1;
+                    }
+                }
+                Console.WriteLine(a + "");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-            for (int i = 2; i <= a / 2; i++)
-            {
-                if (a % i == 0)
-                {
-                    a = a / i;
-                    Console.Write(i + " x ");
-                    i = 1;
-                }
-            }
-            Console.WriteLine(a + "");
         }
     }
 }
