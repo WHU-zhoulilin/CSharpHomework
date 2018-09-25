@@ -8,6 +8,11 @@ namespace program1
 {
     class Program
     {
+        FlyBehaior flybehaior;
+        void DoFly()
+        {
+            flybehaior.fly();
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("请输入一个整数：");
@@ -31,6 +36,17 @@ namespace program1
             {
                 Console.WriteLine(e.Message);
             }
+        }
+    }
+    public interface FlyBehaior
+    {
+        void fly();
+    }
+    public class FlywithWings:FlyBehaior
+    {
+        public void fly()
+        {
+            Console.WriteLine("i fly with wings!");
         }
     }
 }
