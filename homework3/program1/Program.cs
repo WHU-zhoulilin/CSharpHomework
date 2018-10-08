@@ -16,10 +16,10 @@ namespace program1
             Console.WriteLine("矩形=rectangle");
             Console.WriteLine("请输入你想要使用的图形:");
             string type = Console.ReadLine();
-            ShapeFactory factory = new ShapeFactory();
+            //ShapeFactory factory = new ShapeFactory();
             try
             {
-                Shape shape = factory.CreateShape(type);
+                Shape shape =ShapeFactory.CreateShape(type);//工厂的静态成员函数
                 Console.WriteLine("面积为:" + shape.Area());
             }
             catch
