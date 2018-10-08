@@ -42,39 +42,33 @@ namespace program2
             Console.WriteLine("未找到该订单!");
             return null;
         }
-        public void QueryOrderByCustomer(string customer)
+        public Order QueryOrderByCustomer(string customer)
         {
-            bool find = false;
             foreach (Order order in OrderList)
             {
                 if (order.Customer == customer)
                 {
                     Console.WriteLine("已找到符合要求的订单:");
                     OrderDetails.DisplayOrder(order);
-                    find = true;
+                    return order;
                 }
             }
-            if (!find)
-            {
-                Console.WriteLine("未找到该订单!");
-            }
+            Console.WriteLine("未找到该订单!");
+            return null;
         }
-        public void QueryOrderByGoods(string goods)
+        public Order QueryOrderByGoods(string goods)
         {
-            bool find = false;
             foreach (Order order in OrderList)
             {
                 if (order.Goods == goods)
                 {
                     Console.WriteLine("已找到符合要求的订单:");
                     OrderDetails.DisplayOrder(order);
-                    find = true;
+                    return order;
                 }
             }
-            if (!find)
-            {
-                Console.WriteLine("未找到该订单!");
-            }
+            Console.WriteLine("未找到该订单!");
+            return null;
         }
         public void ModifyOrder(Order order,string goods)
         {
