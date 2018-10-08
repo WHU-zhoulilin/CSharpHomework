@@ -8,7 +8,7 @@ namespace program1
 {
     class ShapeFactory
     {
-        public Shape CreateShape(string type)
+        static public Shape CreateShape(string type)
         {
             Shape shape = null;
             try
