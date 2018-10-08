@@ -11,9 +11,9 @@ namespace program2
         static void Main(string[] args)
         {
             OrderService orderService = new OrderService();
-            Func(orderService);
+            Fun(orderService);
         }
-        static void Func(OrderService orderService)
+        static void Fun(OrderService orderService)
         {
             Console.WriteLine("添加订单请输入:1");
             Console.WriteLine("删除订单请输入:2");
@@ -79,9 +79,9 @@ namespace program2
             catch(Exception e)
             {
                 Console.WriteLine("你的输入有误，将返回程序初始状态!");
-                Func(orderService);
+                Fun(orderService);
             }
-            Func(orderService);
+            Fun(orderService);
         }
     }
 }
