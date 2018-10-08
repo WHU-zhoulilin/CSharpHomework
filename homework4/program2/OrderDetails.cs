@@ -11,6 +11,7 @@ namespace program2
         static public void DisplayOrder(Order order)
         {
             Console.WriteLine(order.ToString());
+            Console.WriteLine("");
         }
     }
 }
