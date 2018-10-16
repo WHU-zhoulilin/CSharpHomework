@@ -8,12 +8,18 @@ namespace program2
 {
     class OrderService
     {
-        List <Order> OrderList = new List<Order>();
-        public void AddOrder(string customer,string goods)
+        Dictionary<string, double> goodsDic = new Dictionary<string, double>();
+        public OrderService()
         {
-            Order order = new Order(customer, goods);
+            goodsDic.Add("苹果", 5);
+            goodsDic.Add("香蕉", 2.5);
+            goodsDic.Add("火锅", 100);
+        }
+        List<Order> OrderList = new List<Order>();
+        public void AddOrder(Order order)
+        {
             OrderList.Add(order);
-            Console.WriteLine(order.Customer + "已成功订购" + order.Goods + ".  订单号为" + order.Ordernumber);
+            Console.WriteLine(order.ToString());
         }
         public void DeleteOrder(Order order)
         {
@@ -30,9 +36,9 @@ namespace program2
         }
         public Order QueryOrderByNumber(int ordernumber)
         {
-           foreach(Order order in OrderList)
+            foreach (Order order in OrderList)
             {
-                if(order.Ordernumber==ordernumber)
+                if (order.Ordernumber == ordernumber)
                 {
                     Console.WriteLine("已找到符合要求的订单:");
                     OrderDetails.DisplayOrder(order);
@@ -44,50 +50,85 @@ namespace program2
         }
         public void QueryOrderByCustomer(string customer)
         {
-            bool find = false;
-            foreach (Order order in OrderList)
+            var result = from w in OrderList
+                         where w.Customer == customer
+                         select w;
+            if (result.Count() != 0)
             {
-                if (order.Customer == customer)
+                Console.WriteLine("查找的结果为:");
+                foreach(var n in result)
                 {
-                    if (!find)
-                    {
-                        Console.WriteLine("已找到符合要求的订单:");
-                    }
-                    OrderDetails.DisplayOrder(order);
-                    find = true;
+                    Console.WriteLine(n.ToString());
                 }
             }
-            if (!find)
+            else
             {
-                Console.WriteLine("未找到该订单!");
+                Console.WriteLine("未找到符合条件的订单!");
             }
         }
         public void QueryOrderByGoods(string goods)
         {
-            bool find = false;
-            foreach (Order order in OrderList)
+            var result = from w in OrderList
+                         where w.goods.Name == goods
+                         select w;
+            if (result.Count() != 0)
             {
-                if (order.Goods == goods)
+                Console.WriteLine("查找的结果为:");
+                foreach (var n in result)
                 {
-                    if (!find)
-                    {
-                        Console.WriteLine("已找到符合要求的订单:");
-                    }
-                    OrderDetails.DisplayOrder(order);
-                    find = true;
+                    Console.WriteLine(n.ToString());
                 }
             }
-            if (!find)
+            else
             {
-                Console.WriteLine("未找到该订单!");
+                Console.WriteLine("未找到符合条件的订单!");
             }
         }
-        public void ModifyOrder(Order order,string goods)
+        public void ModifyOrder(Order order, string goods)
         {
             if (order != null)
             {
-                order.Goods = goods;
-                Console.WriteLine(order.Customer + "已修改订单为" + order.Goods);
+                Console.WriteLine("原订单为:");
+                Console.WriteLine(order.ToString());
+                order.goods.Name = goods;
+                order.goods.Price = goodsDic[goods];
+                Console.WriteLine("修改后的订单为:");
+                Console.WriteLine(order.ToString());
+                
+            }
+            else
+            {
+                Console.WriteLine("无法修改，因为不存在该订单!");
+            }
+        }
+        public void ModifyOrder(Order order, int count)
+        {
+            if (order != null)
+            {
+                Console.WriteLine("原订单为:");
+                Console.WriteLine(order.ToString());
+                order.Count = count;
+                Console.WriteLine("修改后的订单为:");
+                Console.WriteLine(order.ToString());
+
+            }
+            else
+            {
+                Console.WriteLine("无法修改，因为不存在该订单!");
+            }
+        }
+        public void ModifyOrder(Order order, string goods,int count)
+        {
+            if (order != null)
+            {
+                Console.WriteLine("原订单为:");
+                Console.WriteLine(order.ToString());
+                order.goods.Name = goods;
+                order.goods.Price = goodsDic[goods];
+                order.Count = count;
+                Console.WriteLine("修改后的订单为:");
+                Console.WriteLine(order.ToString());
+
             }
             else
             {
@@ -97,3 +138,4 @@ namespace program2
 
     }
 }
+
