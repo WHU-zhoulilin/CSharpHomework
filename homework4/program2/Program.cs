@@ -43,9 +43,10 @@ namespace program2
                 Console.WriteLine(e.Message);
             }
 
+
+            //下面的函数可以做具体的一步步的操作，添加，查询，删除，修改
+            //Func(orderService);
         }
-        //下面的函数可以做具体的一步步的操作，添加，查询，删除，修改
-        //Func(orderService);
     
 
 

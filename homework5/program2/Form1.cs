@@ -12,10 +12,19 @@ namespace program2
 {
     public partial class Form1 : Form
     {
+        Dictionary<string, Pen> colorDic = new Dictionary<string, Pen>();
+
         public Form1()
         {
             InitializeComponent();
+            colorDic.Add("黑色", new Pen(Color.Black));
+            colorDic.Add("蓝色", new Pen(Color.Blue));
+            colorDic.Add("红色", new Pen(Color.Red));
+            colorDic.Add("绿色", new Pen(Color.Green));
+            colorDic.Add("紫色", new Pen(Color.Violet));
+            colorDic.Add("黄色", new Pen(Color.Yellow));
         }
+
         private Graphics graphics;
        
         double th1 = 30 * Math.PI / 180;
@@ -23,7 +32,7 @@ namespace program2
         double per1 = 0.6;
         double per2 = 0.7;
         double k = 0.5;
-        int color = 0;
+        string color = "黑色";
         private void button1_Click(object sender, EventArgs e)
         {
             if (graphics == null)
@@ -60,18 +69,9 @@ namespace program2
         }
         void drawLine(double x0, double y0, double x1, double y1)
         {
-            switch(color)
-            {
-                case 0:
-                    graphics.DrawLine(Pens.Black, (int)x0, (int)y0, (int)x1, (int)y1);
-                    break;
-                case 1:
-                    graphics.DrawLine(Pens.Blue, (int)x0, (int)y0, (int)x1, (int)y1);
-                    break;
-                case 2:
-                    graphics.DrawLine(Pens.Red, (int)x0, (int)y0, (int)x1, (int)y1);
-                    break;
-            }
+            
+            graphics.DrawLine(colorDic[color], (int)x0, (int)y0, (int)x1, (int)y1);
+                   
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -81,18 +81,12 @@ namespace program2
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem.ToString() == "黑色")
-            {
-                color = 0;
-            }
-            else if (comboBox1.SelectedItem.ToString() == "蓝色")
-            {
-                color = 1;
-            }
-            else
-            {
-                color = 2;
-            }
+            color = comboBox1.SelectedItem.ToString();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
