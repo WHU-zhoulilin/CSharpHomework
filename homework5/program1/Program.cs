@@ -63,13 +63,13 @@ namespace program1
                 orderService.ModifyOrder(order2, "苹果", "火锅",5);
 
                 //Xml序列化
-                XmlSerializer xml = new XmlSerializer(typeof(Order));
+                
                 string xmlFileName = "s.xml";
-                orderService.XmlSerializeExport(xml, xmlFileName, orderA1);
+                orderService.XmlSerializeExport(xmlFileName, orderA1);
 
                 //Xml反序列化
                 FileStream fs = new FileStream("s.xml", FileMode.Open);
-                Order[] orderA2 = orderService.XmlSerializeImport(xml, fs);
+                Order[] orderA2 = orderService.XmlSerializeImport(fs);
                 foreach(Order n in orderA2)
                 {
                     n.ShowOrder();

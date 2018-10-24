@@ -187,13 +187,36 @@ namespace program1.Tests
         [TestMethod()]
         public void XmlSerializeExportTestW()
         {
-          
+            Order order1 = new Order(Prepare());//订单号为12
+            Order order2 = new Order(Prepare());//订单号为13
+            Order[] orderA = {
+                order1,
+                order2
+            };
+
+            OrderService orderService = new OrderService();
+            try
+            {
+                orderService.XmlSerializeExport("s.xml", orderA);
+            }
+            catch(Exception e)
+            {
+                Assert.AreEqual("序列化的对象的类型不一致!", e.Message);
+            }
         }
 
         [TestMethod()]
         public void XmlSerializeImportTestW()
         {
-            Assert.Fail();
+            OrderService orderService = new OrderService();
+            try
+            {
+                FileStream fs = new FileStream("null.xml", FileMode.Open);
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual(@"未能找到文件“D:\CSharpHomework\homework5\program1Tests2\bin\Debug\null.xml”。", e.Message );
+            }
         }
     }
 }

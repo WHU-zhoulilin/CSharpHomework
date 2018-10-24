@@ -126,10 +126,11 @@ namespace program1
                 Console.WriteLine("无法修改，因为不存在该订单!");
             }
         }
-        public void XmlSerializeExport(XmlSerializer ser,string fileName,object obj)
+        public void XmlSerializeExport(string fileName,object obj)
         {
             try
             {
+                XmlSerializer ser = new XmlSerializer(typeof(Order[]));
                 using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
                 {
                     ser.Serialize(fs, obj);
@@ -140,13 +141,21 @@ namespace program1
                 throw new Exception("序列化的对象的类型不一致!");
             }
         }
-        public Order[] XmlSerializeImport(XmlSerializer ser,FileStream fs)
+        public Order[] XmlSerializeImport(FileStream fs)
         {
-            if(fs.CanRead)
+            XmlSerializer ser = new XmlSerializer(typeof(Order[]));
+            try
             {
-                return (Order[])ser.Deserialize(fs);
+                if (fs.CanRead)
+                {
+                    return (Order[])ser.Deserialize(fs);
+                }
+                return null;
             }
-            return null;
+            catch(Exception e)
+            {
+                throw new Exception("没有该文件!");
+            }
         }
     }
 }
