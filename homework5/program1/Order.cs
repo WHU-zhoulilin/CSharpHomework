@@ -6,51 +6,31 @@ using System.Threading.Tasks;
 
 namespace program1
 {
-    class Order
+    [Serializable]
+    public class Order
     {
-        static int ordernumber = 1;
-        private int count;
-        public int Count
-        {
-            get
-            {
-                return count;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("商品数目必须>0!");
-                }
-                count = value;
-            }
-        }
+        public static int ordernumber = 1;
         public int Ordernumber
         {
             get;
             set;
         }
-        public string Customer
+        public OrderDetails orderDetails;
+        public Order()
         {
-            get;
-            set;
+
         }
-        public Goods goods;
-        public Order(string customer, Goods goods, int count)
+        public Order(OrderDetails orderDetails)
         {
-            this.Customer = customer;
-            this.goods = goods;
-            this.Count = count;
+            this.orderDetails = orderDetails;
             this.Ordernumber = ordernumber;
             ordernumber++;
         }
-        public override string ToString()
+        public void ShowOrder()
         {
-            string result = "================================================================================\n";
-            result += $"此订单号为:{this.Ordernumber}\n";
-            result += $"{this.Customer}购买了{this.Count}份({this.goods.Name}),总价格为{this.goods.Price * this.Count}元!";
-            result += "\n================================================================================\n";
-            return result;
+            Console.WriteLine("-----------");
+            Console.WriteLine("订单号   " + this.Ordernumber);
+            this.orderDetails.ShowTheDetails();
         }
     }
 }

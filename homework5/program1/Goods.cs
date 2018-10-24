@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace program1
 {
-    class Goods
+    [Serializable]
+    public class Goods
     {
-        Dictionary<string, double> goodsDic = new Dictionary<string, double>();
+        static public Dictionary<string, double> goodsDic = new Dictionary<string, double>();
+        static public void InitGoods()
+        {
+            goodsDic.Add("苹果", 5);
+            goodsDic.Add("香蕉", 2.5);
+            goodsDic.Add("火锅", 100);
+        }
         private string name;
         public string Name
         {
@@ -18,10 +25,16 @@ namespace program1
             }
             set
             {
-                name = value;
+                if (goodsDic.Keys.Contains(value))
+                {
+                    name = value;
+                }
+                else
+                {
+                    throw new Exception($"没有{value}这种商品!");
+                }
             }
         }
-
         private double price;
         public double Price
         {
@@ -35,16 +48,38 @@ namespace program1
                 {
                     throw new ArgumentOutOfRangeException("单价必须>0!");
                 }
-                price = value;
+                this.price = value;
             }
         }
-        public Goods(string name)
+        private int count;
+        public int Count
         {
-            goodsDic.Add("苹果", 5);
-            goodsDic.Add("香蕉", 2.5);
-            goodsDic.Add("火锅", 100);
-            this.name = name;
-            this.price = goodsDic[name];
+            get
+            {
+                return this.count;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("数量必须>0!");
+                }
+               
+                else
+                {
+                    this.count = value;
+                }
+            }
+        }
+        public Goods()
+        {
+
+        }
+        public Goods(string name,int count)
+        {
+            this.Count = count;
+            this.Name = name;
+            this.Price = goodsDic[name];
         }
     }
 }

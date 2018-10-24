@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{70224D72-0DA3-41B3-BCB3-BBFA513730AD}</ProjectGuid>
+    <ProjectGuid>{F82A5D74-BC2B-4ABF-B66F-8D3924411387}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>program1</RootNamespace>
     <AssemblyName>program1</AssemblyName>
@@ -42,11 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
-    <Compile Include="Goods.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="OrderDetails.cs" />
-    <Compile Include="OrderService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
