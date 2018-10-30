@@ -60,15 +60,7 @@ namespace program1
             }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("数量必须>0!");
-                }
-               
-                else
-                {
-                    this.count = value;
-                }
+                 this.count = value;
             }
         }
         public Goods()

@@ -25,7 +25,10 @@ namespace program1
         }
         public void AddOrderDetails(Goods goods)
         {
-            goodslist.Add(goods);
+            if (goods.Count > 0)
+            {
+                goodslist.Add(goods);
+            }
         }
         public void ShowTheDetails()
         {
@@ -46,6 +49,19 @@ namespace program1
             }
             Console.WriteLine("共计:" + sum + "元!");
             Console.WriteLine("================================================================================\n");
+        }
+
+        public override string ToString()
+        {
+            double sum = 0;
+            string result = this.Customer.Name + "购买了";
+            foreach(Goods g in goodslist)
+            {
+                sum += g.Count * g.Price;
+                result +=g.Count+"份"+g.Name+"("+g.Price+"元/份)\n";
+            }
+            result += "共计" + sum + "元";
+            return result;
         }
     }
 }

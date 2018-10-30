@@ -15,7 +15,11 @@ namespace program1
             get;
             set;
         }
-        public OrderDetails orderDetails;
+        public OrderDetails orderDetails
+        {
+            get;
+            set;
+        }
         public Order()
         {
 
