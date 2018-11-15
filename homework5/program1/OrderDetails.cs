@@ -58,7 +58,7 @@ namespace program1
             foreach(Goods g in goodslist)
             {
                 sum += g.Count * g.Price;
-                result +=g.Count+"份"+g.Name+"("+g.Price+"元/份)\n";
+                result +=g.Count+"份"+g.Name+"("+g.Price+"元/份)  \n";
             }
             result += "共计" + sum + "元";
             return result;

@@ -68,8 +68,8 @@ namespace program1
                 orderService.XmlSerializeExport(xmlFileName, orderA1);
 
                 //Xml反序列化
-                FileStream fs = new FileStream("s.xml", FileMode.Open);
-                Order[] orderA2 = orderService.XmlSerializeImport(fs);
+               
+                List<Order> orderA2 = orderService.XmlSerializeImport("s.xml");
                 foreach(Order n in orderA2)
                 {
                     n.ShowOrder();

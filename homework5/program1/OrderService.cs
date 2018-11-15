@@ -130,7 +130,7 @@ namespace program1
         {
             try
             {
-                XmlSerializer ser = new XmlSerializer(typeof(Order[]));
+                XmlSerializer ser = new XmlSerializer(typeof(List<Order>));
                 using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
                 {
                     ser.Serialize(fs, obj);
@@ -140,21 +140,27 @@ namespace program1
             {
                 throw new Exception("序列化的对象的类型不一致!");
             }
+          
         }
-        public Order[] XmlSerializeImport(FileStream fs)
+        public List<Order> XmlSerializeImport(string filename)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(Order[]));
+            FileStream fs = new FileStream(filename, FileMode.Open);
+            XmlSerializer ser = new XmlSerializer(typeof(List<Order>));
             try
             {
                 if (fs.CanRead)
                 {
-                    return (Order[])ser.Deserialize(fs);
+                    return (List<Order>)ser.Deserialize(fs);
                 }
                 return null;
             }
             catch(Exception e)
             {
                 throw new Exception("没有该文件!");
+            }
+            finally
+            {
+                fs.Close();
             }
         }
     }

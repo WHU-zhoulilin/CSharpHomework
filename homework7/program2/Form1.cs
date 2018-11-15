@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Xsl;
+using System.Xml.XPath;
 
 namespace program2
 {
@@ -20,16 +23,14 @@ namespace program2
         {
             InitializeComponent();
             program1.Goods.InitGoods();
-            this.dataGridView1.DataSource = orderlist;
+            this.orderBindingSource.DataSource = orderlist;
             this.timer1.Enabled = true;
             
-
-
         }
        
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            
             Form2 form2 = new Form2();
            
             form2.Visible = true;
@@ -43,6 +44,7 @@ namespace program2
                 if (MessageBox.Show("确定删除?", "删除订单", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     orderlist.RemoveAt(this.dataGridView1.CurrentRow.Index);
+                    
                 }
             }
         }
@@ -55,7 +57,6 @@ namespace program2
                 if (SelectedOrder != null)
                 {
                     Form3 form3 = new Form3();
-
                     form3.Visible = true;
                 }
             }
@@ -69,7 +70,7 @@ namespace program2
                 var result = orderlist.Where(order =>
                    order.orderDetails.Customer.Name==textBox1.Text    
                );
-                this.dataGridView1.DataSource = new BindingList<program1.Order>(result.ToList<program1.Order>());
+                this.orderBindingSource.DataSource  = new List<program1.Order>(result.ToList<program1.Order>());
             }
             else if(radioButton2.Checked)
             {
@@ -77,7 +78,7 @@ namespace program2
                     order.orderDetails.goodslist.Where(d => d.Name == textBox2.Text)
                     .Count() > 0
                 );
-                this.dataGridView1.DataSource = new BindingList<program1.Order>(result.ToList<program1.Order>());
+                this.orderBindingSource.DataSource = new BindingList<program1.Order>(result.ToList<program1.Order>());
             }
             else
             {
@@ -98,8 +99,40 @@ namespace program2
             this.dataGridView1.DataSource = orderlist;
         }
 
-   
+        private void button6_Click(object sender, EventArgs e)
+        {
+            program1.OrderService orderService = new program1.OrderService();
+            DialogResult result = saveFileDialog1.ShowDialog();
+            if (result.Equals(DialogResult.OK))
+            {
+                String fileName = saveFileDialog1.FileName;
+                orderService.XmlSerializeExport(fileName,orderlist.ToList<program1.Order>());
+            }
+        }
 
-    
+        private void button7_Click(object sender, EventArgs e)
+        {
+            program1.OrderService orderService = new program1.OrderService();
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result.Equals(DialogResult.OK))
+            {
+                String fileName = openFileDialog1.FileName;
+                orderService.XmlSerializeImport(fileName);
+                List<program1.Order> templist = orderService.XmlSerializeImport(fileName);
+                foreach(program1.Order order in templist)
+                {
+                    orderlist.Add(order);
+                    program1.Order.ordernumber++;
+                }
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+           
+            XslCompiledTransform trans = new XslCompiledTransform();
+            trans.Load(@".\order1.xsl");
+            trans.Transform(@".\order1.xml", "out.html");
+        }
     }
 }

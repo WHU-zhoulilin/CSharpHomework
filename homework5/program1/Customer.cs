@@ -27,6 +27,19 @@ namespace program1
                 name = value;
             }
         }
+        private string telephone;
+        public string Telephone
+        {
+            get
+            {
+                return this.telephone;
+            }
+            
+            set
+            {
+                this.telephone = value;
+            }
+        }
         public Customer()
         {
 
@@ -36,6 +49,7 @@ namespace program1
             this.name = name;
             this.Id = id;
             id++;
+            Telephone = "";
         }
     }
 }

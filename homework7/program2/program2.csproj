@@ -83,8 +83,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\program1.Customer.datasource" />
     <None Include="Properties\DataSources\program1.Goods.datasource" />
     <None Include="Properties\DataSources\program1.Order.datasource" />
+    <None Include="Properties\DataSources\program1.OrderDetails.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -15,6 +15,11 @@ namespace program1
             get;
             set;
         }
+        public string Datenumber
+        {
+            get;
+            set;
+        }
         public OrderDetails orderDetails
         {
             get;
@@ -27,6 +32,8 @@ namespace program1
         public Order(OrderDetails orderDetails)
         {
             this.orderDetails = orderDetails;
+            this.Datenumber =System.DateTime.Now.Year.ToString()+"-"+System.DateTime.Now.Month.ToString()+"-"
+                        +System .DateTime .Now.Day.ToString()+"-"+ordernumber;
             this.Ordernumber = ordernumber;
             ordernumber++;
         }

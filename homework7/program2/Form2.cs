@@ -7,16 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace program2
 {
     public partial class Form2 : Form
     {
+        
         public Form2()
         {
             InitializeComponent();
          
         }
+      
 
         //添加
         private void button1_Click(object sender, EventArgs e)
@@ -55,7 +58,7 @@ namespace program2
         //提交
         private void button3_Click(object sender, EventArgs e)
         {
-            program1.Customer customer=new program1.Customer(textBox1.Text);
+            program1.Customer customer = new program1.Customer(textBox1.Text);
             program1.Goods goods;
             program1.OrderDetails orderDetails = new program1.OrderDetails(customer); 
             for(int i=0;i<listBox2.Items.Count;i++)
@@ -63,9 +66,18 @@ namespace program2
                 goods = new program1.Goods((string)listBox2.Items[i], (int)listBox3.Items[i]);
                 orderDetails.AddOrderDetails(goods);
             }
-            Form1.orderlist.Add(new program1.Order(orderDetails));
-            
-            this.Dispose();
+           
+            string patten = "^[0-9]+$";
+            if (Regex.IsMatch(textBox2.Text, patten)&&textBox2.TextLength==11)
+            {
+                customer.Telephone = textBox2.Text;
+                Form1.orderlist.Add(new program1.Order(orderDetails));
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("输入的电话号码有误，请重新输入");
+            }
         }
     }
     

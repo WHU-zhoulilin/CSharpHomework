@@ -25,9 +25,11 @@ namespace program1
             }
             set
             {
+                
                 if (goodsDic.Keys.Contains(value))
                 {
                     name = value;
+                    this.Price = goodsDic[value];
                 }
                 else
                 {
