@@ -14,7 +14,7 @@ namespace program1
     {
         static void Main(string[] args)
         {
-            try
+            
             {
                 OrderService orderService = new OrderService();
                 Console.WriteLine("共有3种食品");
@@ -80,10 +80,7 @@ namespace program1
                
 
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            
             
         }
     }

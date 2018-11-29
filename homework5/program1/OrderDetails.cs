@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +11,12 @@ namespace program1
     [Serializable]
     public class OrderDetails
     {
+        static public int u=1;
+        [Key]
+        public int Id
+        {
+            get;set;
+        }
         public Customer Customer
         {
             get;
@@ -22,6 +30,7 @@ namespace program1
         public OrderDetails(Customer customer)
         {
             this.Customer = customer;
+            this.Id = u++;
         }
         public void AddOrderDetails(Goods goods)
         {

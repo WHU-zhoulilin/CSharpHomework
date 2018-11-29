@@ -52,7 +52,7 @@ namespace program1
                         current2 = url;
                         break;
                     }
-                   
+
                 }
                 
                 if (current== null || count > 100) break;
@@ -61,7 +61,7 @@ namespace program1
 
                 Task<string> task = Task<string>.Run(() => DownLoad(current));
                 Task<string> task1 = Task<string>.Run(() => DownLoad(current1));
-                Task<string> task2= Task<string>.Run(() => DownLoad(current2));
+                Task<string> task2 = Task<string>.Run(() => DownLoad(current2));
                 string html = task.Result+task1.Result+task2.Result;
                 try
                 {

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,8 @@ namespace program1
     public class Order
     {
         public static int ordernumber = 1;
-        public int Ordernumber
+        
+        public int Id
         {
             get;
             set;

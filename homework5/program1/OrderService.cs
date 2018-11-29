@@ -18,14 +18,10 @@ namespace program1
         public List<Order> OrderList = new List<Order>();
         public void AddOrder(Order order)
         {
-            if (order != null)
+            using (var db = new OrderDB())
             {
-                OrderList.Add(order);
-                order.ShowOrder();
-            }
-            else
-            {
-                throw new NullReferenceException("订单不存在!");
+                db.Order.Add(order);
+                db.SaveChanges();
             }
         }
         public void DeleteOrder(Order order)

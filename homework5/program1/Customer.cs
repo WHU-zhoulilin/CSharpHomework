@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace program1
 {
-    [Serializable]
+    
     public class Customer
     {
         static private uint id = 1;
+        [Key]
         public uint Id
         {
             get;
@@ -44,12 +47,12 @@ namespace program1
         {
 
         }
-        public Customer(string name)
+        public Customer(string name,string T)
         {
             this.name = name;
             this.Id = id;
             id++;
-            Telephone = "";
+            Telephone = T;
         }
     }
 }
